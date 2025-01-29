@@ -38,7 +38,7 @@ public class Room {
             return "There are no exits.";
         }
 
-        StringBuilder exitString = new StringBuilder("Exits: ");
+        StringBuilder exitString = new StringBuilder("Saídas: ");
         for (String direction : exits.keySet()) {
             exitString.append(direction).append(", "); // Adiciona vírgula para separar as direções
         }
@@ -55,9 +55,9 @@ public class Room {
 
         // Adiciona os itens presentes na sala
         if (items.isEmpty()) {
-            longDescription.append("There are no items in this room.\n");
+            longDescription.append("Não tem itens nesse lugar.\n");
         } else {
-            longDescription.append("Items: ");
+            longDescription.append("Itens: ");
             for (Item item : items.values()) {
                 longDescription.append(item.toString()).append(", ");
             }

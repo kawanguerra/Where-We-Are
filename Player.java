@@ -4,7 +4,7 @@ public class Player {
     private String name;
     private Room currentRoom;
     private HashMap<String, Item> inventory;
-    private int maxWeight = 20;  // Peso máximo que o jogador pode carregar (em unidades)
+    private int maxWeight = 30;  // Peso máximo que o jogador pode carregar (em unidades)
     private int currentWeight = 0;  // Peso atual no inventário
 
     public Player(String name, Room startRoom) {
@@ -16,11 +16,11 @@ public class Player {
     public void addItemToInventory(Item item) {
         // Verificar se o peso do item excede o peso máximo permitido
         if (currentWeight + item.getWeight() > maxWeight) {
-            System.out.println("You can't carry that! It's too heavy.");
+            System.out.println("Você não pode carregar isso! Tá muito pesado.");
         } else {
             inventory.put(item.getDescription(), item);
             currentWeight += item.getWeight();
-            System.out.println("You have taken the " + item.getDescription());
+            System.out.println("Você pegou " + item.getDescription());
         }
     }
 

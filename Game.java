@@ -35,7 +35,7 @@ public class Game
         createRooms();
         parser = new Parser();
         previousRooms = new Stack<>();
-        player = new Player("Protagonista", new Room("no quarto do protagonista"));
+        player = new Player("Você", new Room("no seu quarto"));
     }
 
     private void createRooms() {
@@ -47,68 +47,66 @@ public class Game
         Room barn = new Room("no celeiro da fazenda");
         Room field = new Room("no campo ao lado da fazenda");
         Room house = new Room("dentro da casa do Zayn");
+        Room zaynBedroom = new Room("no quarto do Zayn"); 
 
         // Casa de Louis em Doncaster
         louisHome = new Room("na casa de Louis em Doncaster");
         Room livingRoom = new Room("na sala de estar de Louis");
         Room kitchen = new Room("na cozinha da casa de Louis");
         Room backyard = new Room("no quintal da casa de Louis");
+        Room bathroom = new Room("no banheiro do Louis");
 
         // Parque em Dublin com Niall
-        dublinPark = new Room("em um parque em Dublin");
+        dublinPark = new Room("em um parque em Dublin - Irlanda");
         Room lake = new Room("perto do lago do parque");
         Room forest = new Room("na trilha da floresta do parque");
         Room playground = new Room("no playground do parque");
+        Room cave = new Room("Uma entrada escura entre as árvores. Parece assustador, mas você sente que algo importante está lá dentro");
 
         // Casa de Liam em Londres
         liamHome = new Room("na casa de Liam em Londres");
         Room studio = new Room("no estúdio de música do Liam");
         Room balcony = new Room("na varanda da casa de Liam");
         Room garden = new Room("no jardim da casa de Liam");
+        Room library = new Room("Uma sala silenciosa cheia de livros e partituras.");
+        
 
         // Festa do Harry em LA
         harryParty = new Room("em uma festa em Los Angeles");
         Room danceFloor = new Room("na pista de dança da festa");
         Room bar = new Room("no bar da festa");
         Room lounge = new Room("no lounge VIP da festa");
-
-        //MP3 ligações
-        bedroom.setExit("north", zaynFarm); // Do quarto para a fazenda do Zayn
-        zaynFarm.setExit("east", louisHome); // Da fazenda do Zayn para a casa de Louis
-        louisHome.setExit("south", dublinPark); // Da casa de Louis para o parque de Niall
-        dublinPark.setExit("west", liamHome); // Do parque de Niall para a casa de Liam
-        liamHome.setExit("north", harryParty); // Da casa de Liam para a festa do Harry
-        harryParty.setExit("south", null); // Fim do jogo
+        Room rooftop = new Room("O terraço da festa é iluminado por luzes decorativas. De lá, você pode ver toda a cidade. Harry talvez tenha deixado algo aqui");
 
         // Conexões internas da fazenda do Zayn
         zaynFarm.setExit("north", barn);
         zaynFarm.setExit("east", field);
         zaynFarm.setExit("south", house);
-        zaynFarm.setExit("west", bedroom);
+        zaynFarm.setExit("west", zaynBedroom);
 
         // Conexões internas da casa de Louis
         louisHome.setExit("north", livingRoom);
         louisHome.setExit("east", kitchen);
         louisHome.setExit("south", backyard);
-        louisHome.setExit("west", zaynFarm);
+        louisHome.setExit("west", bathroom);
 
         // Conexões internas do parque de Niall
         dublinPark.setExit("north", lake);
         dublinPark.setExit("east", forest);
         dublinPark.setExit("south", playground);
-        dublinPark.setExit("west", louisHome);
+        dublinPark.setExit("west", cave);
 
         // Conexões internas da casa de Liam
         liamHome.setExit("north", studio);
         liamHome.setExit("east", balcony);
         liamHome.setExit("south", garden);
-        liamHome.setExit("west", dublinPark);
+        liamHome.setExit("west", library);
 
         // Conexões internas da festa do Harry
         harryParty.setExit("north", danceFloor);
         harryParty.setExit("east", bar);
         harryParty.setExit("south", lounge);
-        harryParty.setExit("west", liamHome);
+        harryParty.setExit("west", rooftop);
 
         // Define o quarto como o ponto inicial
         currentRoom = bedroom;
@@ -140,7 +138,7 @@ public class Game
         // Adiciona a mochila ao quarto
         bedroom.addItem("mochila", mochila);
 
-        Item zaynItem = new Item("Zayn", 1); // Peso simbólico
+        Item zaynItem = new Item("Zayn", 1); 
         Item louisItem = new Item("Louis", 1);
         Item niallItem = new Item("Niall", 1);
         Item liamItem = new Item("Liam", 1);
@@ -182,22 +180,22 @@ public class Game
         System.out.println(player.getCurrentRoom().getLongDescription());
     }
 
-    /**
-     * Print out the opening message for the player.
-     */
-    private void printWelcome()
-    {
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
-        System.out.println("Type 'help' if you need help.");
-        printLocationInfo(); // Chama o método printLocationInfo
+    private void printWelcome() {
+        System.out.println("Bem-vindo ao 'Where We Are'!");
+        System.out.println("Uma aventura inspirada na história de uma das maiores bandas do mundo: One Direction!");
+        System.out.println("Os membros da banda estão espalhados pelo mundo, e cabe a você reuni-los para o grande comeback!");
+        System.out.println("Você possui um MP3 mágico que pode tocar os álbuns da banda, mas antes você precisará encontrá-los e completar missões desafiadoras em cada cidade.");
+        System.out.println("Explore os cenários, colete itens, e prepare-se para trazer a magia de volta ao palco.");
+        System.out.println("Digite 'help' se precisar de ajuda com os comandos.");
+        System.out.println();
+        printLocationInfo(); // Exibe as informações da localização inicial
     }
 
     private boolean processCommand(Command command) {
         boolean wantToQuit = false;
 
         if (command.isUnknown()) {
-            System.out.println("I don't know what you mean...");
+            System.out.println("Não entendi o que você quer dizer...");
             return false;
         }
 
@@ -217,7 +215,7 @@ public class Game
         else if (commandWord.equals("play")) {
             String album = command.getSecondWord();
             if (album == null) {
-                System.out.println("Play what?");
+                System.out.println("Play o quê?");
                 return false;
             }
             playAlbum(album);
@@ -242,15 +240,15 @@ public class Game
     private void printItems() {
         HashMap<String, Item> inventory = player.getInventory();
         if (inventory.isEmpty()) {
-            System.out.println("You are not carrying any items.");
+            System.out.println("Você não está carregando nenhum item.");
         } else {
             int totalWeight = 0;
-            System.out.println("You are carrying the following items:");
+            System.out.println("Você está carregando os seguintes itens: ");
             for (Item item : inventory.values()) {
-                System.out.println("- " + item.getDescription() + " (Weight: " + item.getWeight() + ")");
+                System.out.println("- " + item.getDescription() + " (Peso: " + item.getWeight() + ")");
                 totalWeight += item.getWeight();
             }
-            System.out.println("Total weight: " + totalWeight);
+            System.out.println("Peso total: " + totalWeight);
         }
     }
 
@@ -262,11 +260,20 @@ public class Game
      */
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("Você parece um pouco perdido. Não se preocupe, estou aqui para ajudar!");
+        System.out.println("Sua missão é reunir os membros da banda One Direction e trazê-los de volta para o grande comeback.");
+        System.out.println("Use o MP3 mágico para viajar entre as cidades e procure pelos álbuns escondidos.");
         System.out.println();
-        System.out.println("Your command words are:");
-        System.out.println("   go quit help look play");
+        System.out.println("Os comandos que você pode usar são:");
+        System.out.println("   go [direção] - Para ir para outra sala ou localização.");
+        System.out.println("   quit - Para sair do jogo.");
+        System.out.println("   help - Para ver esta mensagem de ajuda novamente.");
+        System.out.println("   look - Para observar melhor o ambiente ao seu redor.");
+        System.out.println("   play [álbum] - Para tocar um álbum no MP3 mágico.");
+        System.out.println("   back - Para retornar ao lugar anterior.");
+        System.out.println("   take [item] - Para pegar um item do cenário.");
+        System.out.println("   drop [item] - Para largar um item que você não precisa mais.");
+        System.out.println("   items - Para ver os itens que você está carregando.");
     }
 
     /** 
@@ -275,7 +282,7 @@ public class Game
      */
     private void goRoom(Command command) {
         if (!command.hasSecondWord()) {
-            System.out.println("Go where?");
+            System.out.println("Ir pra onde?");
             return;
         }
 
@@ -283,7 +290,7 @@ public class Game
         Room nextRoom = player.getCurrentRoom().getExit(direction);
 
         if (nextRoom == null) {
-            System.out.println("There is no door!");
+            System.out.println("Não tem saída!");
         } else {
             previousRooms.push(player.getCurrentRoom()); // Empilha a sala atual antes de mudar
             player.setCurrentRoom(nextRoom); // Atualiza a sala atual do jogador
@@ -299,7 +306,7 @@ public class Game
     private boolean quit(Command command) 
     {
         if(command.hasSecondWord()) {
-            System.out.println("Quit what?");
+            System.out.println("Sair de onde?!");
             return false;
         }
         else {
@@ -346,7 +353,7 @@ public class Game
 
     private void back() {
         if (previousRooms.isEmpty()) {
-            System.out.println("You can't go back. There's no previous room.");
+            System.out.println("Você não pode voltar para trás. Não tem local anterior..");
         } else {
             player.setCurrentRoom(previousRooms.pop()); // Desempilha e atualiza a sala do jogador
             printLocationInfo();
@@ -355,7 +362,7 @@ public class Game
 
     private void takeItem(Command command) {
         if (!command.hasSecondWord()) {
-            System.out.println("Take what?");
+            System.out.println("Pegar o que?");
             return;
         }
 
@@ -363,7 +370,7 @@ public class Game
         Item item = player.getCurrentRoom().getItem(itemName);
 
         if (item == null) {
-            System.out.println("There is no " + itemName + " in this room.");
+            System.out.println("Não tem " + itemName + " nesse lugar.");
         } else {
             // Verifica se o item é um álbum ou membro
             switch (item.getDescription()) {
@@ -384,36 +391,36 @@ public class Game
                     break;
                 case "Zayn":
                     hasZayn = true;
-                    System.out.println("Você encontrou Zayn! Agora ele pode ajudar no comeback!");
+                    System.out.println("Você encontrou Zayn! VAS HAPENNIN!");
                     break;
                 case "Louis":
                     hasLouis = true;
-                    System.out.println("Você encontrou Louis! Mais um membro para a banda!");
+                    System.out.println("Você encontrou Louis! OIOIIIIIIIIIIIIIIIII!");
                     break;
                 case "Niall":
                     hasNiall = true;
-                    System.out.println("Você encontrou Niall! O irlandês está de volta!");
+                    System.out.println("Você encontrou Niall! LALALALALALALALA VAMOS!!");
                     break;
                 case "Liam":
                     hasLiam = true;
-                    System.out.println("Você encontrou Liam! O líder está pronto!");
+                    System.out.println("Você encontrou Liam! Cuidado com as colheres!");
                     break;
                 case "Harry":
                     hasHarry = true;
-                    System.out.println("Você encontrou Harry! O estilo está completo!");
+                    System.out.println("Você encontrou Harry! A BANDA ESTÁ COMPLETA!");
                     break;
             }
 
             player.addItemToInventory(item);
             player.getCurrentRoom().removeItem(itemName);
-            System.out.println("You have taken the " + item.getDescription());
+            System.out.println("Você pegou " + item.getDescription());
         }
     }
 
     private void dropItem(Command command) {
         String itemName = command.getSecondWord();
         if (itemName == null) {
-            System.out.println("Drop what?");
+            System.out.println("Dropar o que?");
             return;
         }
 
@@ -422,9 +429,9 @@ public class Game
             Item item = player.getInventory().get(itemName);
             currentRoom.addItem(itemName, item); // Adiciona o item de volta à sala
             player.removeItemFromInventory(itemName); // Remove o item do inventário
-            System.out.println("You have dropped the " + item.getDescription());
+            System.out.println("Você dropou " + item.getDescription());
         } else {
-            System.out.println("You don't have a " + itemName + ".");
+            System.out.println("Você não tem " + itemName + ".");
         }
     }
 
