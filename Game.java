@@ -21,7 +21,7 @@ public class Game
     private boolean hasLiam = false;
     private boolean hasHarry = false;
 
-    private boolean hasTakeMeHome = true;  // O álbum Take Me Home está no início
+    private boolean hasTakeMeHome = false;
     private boolean hasMidnightMemories = false;
     private boolean hasFour = false;
     private boolean hasUpAllNight = false;
@@ -32,10 +32,10 @@ public class Game
      */
     public Game() 
     {
-        createRooms();
         parser = new Parser();
         previousRooms = new Stack<>();
         player = new Player("Você", new Room("no seu quarto"));
+        createRooms(); // Agora `createRooms()` pode acessar `player` sem erro
     }
 
     private void createRooms() {
@@ -69,7 +69,6 @@ public class Game
         Room balcony = new Room("na varanda da casa de Liam");
         Room garden = new Room("no jardim da casa de Liam");
         Room library = new Room("Uma sala silenciosa cheia de livros e partituras.");
-        
 
         // Festa do Harry em LA
         harryParty = new Room("em uma festa em Los Angeles");
@@ -113,7 +112,7 @@ public class Game
 
         //álbuns
         Item upAllNight = new Item("Álbum Up All Night - One Direction", 5);
-        Item takeMeHome = new Item("Álbum Take Me Home - One Direction", 5);
+        Item takeMeHome = new Item("TMH", 5);
         Item midnightMemories = new Item("Álbum Midnight Memories - One Direction", 5);
         Item four = new Item("Álbum Four - One Direction", 5);
         Item mitam = new Item("Álbum Made In the AM - One Direction", 5);
@@ -150,6 +149,12 @@ public class Game
         studio.addItem("liam", liamItem);       // Liam está no estúdio
         danceFloor.addItem("harry", harryItem); // Harry está na pista de dança
 
+        bedroom.addItem("TMH", takeMeHome);
+        field.addItem("Álbum Up All Night - One Direction", upAllNight);
+        cave.addItem("Álbum Four - One Direction", four);
+        library.addItem("Álbum Midnight Memories - One Direction", midnightMemories);
+        rooftop.addItem("Álbum Made In the AM - One Direction", mitam);
+
         player.setCurrentRoom(bedroom);
     }
 
@@ -168,7 +173,7 @@ public class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Goodbye! Hope you reunite the band next time."); 
+        System.out.println("Adeus. Espero que você reúna a banda na próxima."); 
     }
 
     /**
@@ -315,34 +320,44 @@ public class Game
     }
 
     private void playAlbum(String album) {
-        if (album.equals("Take Me Home") && hasTakeMeHome) {
+        if (album.equals("TMH") && hasTakeMeHome) {
             System.out.println("Você toca 'Take Me Home' e é teletransportado para a fazenda do Zayn!");
-            currentRoom = zaynFarm;
+            player.setCurrentRoom(zaynFarm);
+            printLocationInfo();
+
         } else if (album.equals("Midnight Memories") && hasMidnightMemories) {
             if (hasZayn) { // Precisa ter encontrado Zayn
                 System.out.println("Você toca 'Midnight Memories' e vai para Doncaster!");
-                currentRoom = louisHome;
+                player.setCurrentRoom(louisHome);
+                printLocationInfo();
+
             } else {
                 System.out.println("Você precisa encontrar Zayn primeiro!");
             }
         } else if (album.equals("Four") && hasFour) {
             if (hasLouis) { // Precisa ter encontrado Louis
                 System.out.println("Você toca 'Four' e vai para o parque de Dublin!");
-                currentRoom = dublinPark;
+                player.setCurrentRoom(dublinPark);
+                printLocationInfo();
+
             } else {
                 System.out.println("Você precisa encontrar Louis primeiro!");
             }
         } else if (album.equals("Up All Night") && hasUpAllNight) {
             if (hasNiall) { // Precisa ter encontrado Niall
                 System.out.println("Você toca 'Up All Night' e vai para a casa de Liam!");
-                currentRoom = liamHome;
+                player.setCurrentRoom(liamHome);
+                printLocationInfo();
+
             } else {
                 System.out.println("Você precisa encontrar Niall primeiro!");
             }
         } else if (album.equals("Made In The A.M.") && hasMitam) {
             if (hasLiam) { // Precisa ter encontrado Liam
                 System.out.println("Você toca 'Made In The A.M.' e vai para a festa do Harry!");
-                currentRoom = harryParty;
+                player.setCurrentRoom(harryParty);
+                printLocationInfo();
+
             } else {
                 System.out.println("Você precisa encontrar Liam primeiro!");
             }
@@ -374,7 +389,7 @@ public class Game
         } else {
             // Verifica se o item é um álbum ou membro
             switch (item.getDescription()) {
-                case "Álbum Take Me Home - One Direction":
+                case "TMH":
                     hasTakeMeHome = true;
                     break;
                 case "Álbum Midnight Memories - One Direction":
