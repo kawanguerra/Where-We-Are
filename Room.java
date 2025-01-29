@@ -1,53 +1,84 @@
+import java.util.HashMap;
 
-public class Room 
-{
-    public String description;
-    public Room northExit;
-    public Room southExit;
-    public Room eastExit;
-    public Room westExit;
+public class Room {
+    private String description;
+    private HashMap<String, Room> exits; // Usando um HashMap para armazenar as saídas
+    private HashMap<String, Item> items; // Usando um HashMap para armazenar os objetos Item na sala
 
-    /**
-     * Create a room described "description". Initially, it has
-     * no exits. "description" is something like "a kitchen" or
-     * "an open court yard".
-     * @param description The room's description.
-     */
-    public Room(String description) 
-    {
+    // Construtor da classe Room
+    public Room(String description) {
         this.description = description;
+        this.exits = new HashMap<>();
+        this.items = new HashMap<>();
     }
 
-    /**
-     * Define the exits of this room.  Every direction either leads
-     * to another room or is null (no exit there).
-     * @param north The north exit.
-     * @param east The east east.
-     * @param south The south exit.
-     * @param west The west exit.
-     */
-    public void setExits(Room north, Room east, Room south, Room west) 
-    {
-        if(north != null) {
-            northExit = north;
-        }
-        if(east != null) {
-            eastExit = east;
-        }
-        if(south != null) {
-            southExit = south;
-        }
-        if(west != null) {
-            westExit = west;
-        }
+    // Método para adicionar uma saída
+    public void setExit(String direction, Room neighbor) {
+        exits.put(direction.toLowerCase(), neighbor); // Adiciona a saída ao HashMap
     }
 
-    /**
-     * @return The description of the room.
-     */
-    public String getDescription()
-    {
+    // Método para adicionar um item à sala
+    public void addItem(String itemName, Item item) {
+        items.put(itemName.toLowerCase(), item); // Adiciona o item ao HashMap
+    }
+
+    // Método para obter a descrição da sala
+    public String getDescription() {
         return description;
+    }
+
+    // Método para obter uma saída baseada na direção
+    public Room getExit(String direction) {
+        return exits.get(direction.toLowerCase()); // Retorna a sala correspondente à direção
+    }
+
+    // Método que retorna uma string com todas as saídas disponíveis
+    public String getExitString() {
+        if (exits.isEmpty()) {
+            return "There are no exits.";
+        }
+
+        StringBuilder exitString = new StringBuilder("Exits: ");
+        for (String direction : exits.keySet()) {
+            exitString.append(direction).append(", "); // Adiciona vírgula para separar as direções
+        }
+
+        return exitString.toString().trim().replaceAll(",$", ""); // Remove a última vírgula
+    }
+
+    // Método que retorna uma descrição longa da sala, incluindo saídas e itens
+    public String getLongDescription() {
+        StringBuilder longDescription = new StringBuilder(getDescription() + "\n");
+
+        // Adiciona as saídas
+        longDescription.append(getExitString()).append("\n");
+
+        // Adiciona os itens presentes na sala
+        if (items.isEmpty()) {
+            longDescription.append("There are no items in this room.\n");
+        } else {
+            longDescription.append("Items: ");
+            for (Item item : items.values()) {
+                longDescription.append(item.toString()).append(", ");
+            }
+            longDescription.setLength(longDescription.length() - 2); // Remove a última vírgula e espaço
+            longDescription.append("\n");
+        }
+
+        return longDescription.toString().trim(); // Retorna a descrição completa da sala
+    }
+
+    // Método para verificar se um item está presente na sala
+    public boolean hasItem(String itemName) {
+        return items.containsKey(itemName.toLowerCase());
+    }
+
+    public Item getItem(String itemName) {
+        return items.get(itemName.toLowerCase()); // Retorna o item da sala
+    }
+
+    public void removeItem(String itemName) {
+        items.remove(itemName.toLowerCase()); // Remove o item da sala
     }
 
 }
