@@ -34,9 +34,6 @@ public class Room {
 
     // Método que retorna uma string com todas as saídas disponíveis
     public String getExitString() {
-        if (exits.isEmpty()) {
-            return "There are no exits.";
-        }
 
         StringBuilder exitString = new StringBuilder("Saídas: ");
         for (String direction : exits.keySet()) {
@@ -57,12 +54,10 @@ public class Room {
         if (items.isEmpty()) {
             longDescription.append("Não tem itens nesse lugar.\n");
         } else {
-            longDescription.append("Itens: ");
+            longDescription.append("Itens:\n");
             for (Item item : items.values()) {
-                longDescription.append(item.toString()).append(", ");
+                longDescription.append("- ").append(item.toString()).append("\n"); // Cada item em uma nova linha
             }
-            longDescription.setLength(longDescription.length() - 2); // Remove a última vírgula e espaço
-            longDescription.append("\n");
         }
 
         return longDescription.toString().trim(); // Retorna a descrição completa da sala

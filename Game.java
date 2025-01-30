@@ -40,42 +40,42 @@ public class Game
 
     private void createRooms() {
         // Quarto do protagonista
-        Room bedroom = new Room("no quarto do protagonista");
+        Room bedroom = new Room("Você está no seu quarto... que bagunça!");
 
         // Fazenda do Zayn
-        zaynFarm = new Room("na fazenda do Zayn");
-        Room barn = new Room("no celeiro da fazenda");
-        Room field = new Room("no campo ao lado da fazenda");
-        Room house = new Room("dentro da casa do Zayn");
-        Room zaynBedroom = new Room("no quarto do Zayn"); 
+        zaynFarm = new Room("Você está fazenda do Zayn");
+        Room barn = new Room("Você está no celeiro da fazenda");
+        Room field = new Room("Você está no campo ao lado da fazenda");
+        Room house = new Room("Você está dentro da casa do Zayn");
+        Room zaynBedroom = new Room("Você está no quarto do Zayn"); 
 
         // Casa de Louis em Doncaster
-        louisHome = new Room("na casa de Louis em Doncaster");
-        Room livingRoom = new Room("na sala de estar de Louis");
-        Room kitchen = new Room("na cozinha da casa de Louis");
-        Room backyard = new Room("no quintal da casa de Louis");
-        Room bathroom = new Room("no banheiro do Louis");
+        louisHome = new Room("Você está na casa de Louis em Doncaster");
+        Room livingRoom = new Room("Você está na sala de estar de Louis");
+        Room kitchen = new Room("Você está na cozinha da casa de Louis");
+        Room backyard = new Room("Você está no quintal da casa de Louis");
+        Room bathroom = new Room("Você está no banheiro do Louis");
 
         // Parque em Dublin com Niall
-        dublinPark = new Room("em um parque em Dublin - Irlanda");
-        Room lake = new Room("perto do lago do parque");
-        Room forest = new Room("na trilha da floresta do parque");
-        Room playground = new Room("no playground do parque");
-        Room cave = new Room("Uma entrada escura entre as árvores. Parece assustador, mas você sente que algo importante está lá dentro");
+        dublinPark = new Room("Você está em um parque em Dublin - Irlanda");
+        Room lake = new Room("Você está perto do lago do parque");
+        Room forest = new Room("Você está na trilha da floresta do parque");
+        Room playground = new Room("Você está no playground do parque");
+        Room cave = new Room("Você está em uma entrada escura entre as árvores. Parece assustador, mas você sente que algo importante está lá dentro");
 
         // Casa de Liam em Londres
-        liamHome = new Room("na casa de Liam em Londres");
-        Room studio = new Room("no estúdio de música do Liam");
-        Room balcony = new Room("na varanda da casa de Liam");
-        Room garden = new Room("no jardim da casa de Liam");
-        Room library = new Room("Uma sala silenciosa cheia de livros e partituras.");
+        liamHome = new Room("Você está na casa de Liam em Londres");
+        Room studio = new Room("Você está no estúdio de música do Liam");
+        Room balcony = new Room("Você está na varanda da casa de Liam");
+        Room garden = new Room("Você está no jardim da casa de Liam");
+        Room library = new Room("Você está em uma sala silenciosa cheia de livros e partituras.");
 
         // Festa do Harry em LA
-        harryParty = new Room("em uma festa em Los Angeles");
-        Room danceFloor = new Room("na pista de dança da festa");
-        Room bar = new Room("no bar da festa");
-        Room lounge = new Room("no lounge VIP da festa");
-        Room rooftop = new Room("O terraço da festa é iluminado por luzes decorativas. De lá, você pode ver toda a cidade. Harry talvez tenha deixado algo aqui");
+        harryParty = new Room("Em uma festa em Los Angeles você observa Harry Styles na pista de dança ao norte.");
+        Room danceFloor = new Room("Você está na pista de dança da festa");
+        Room bar = new Room("Você está no bar da festa");
+        Room lounge = new Room("Você está no lounge VIP da festa");
+        Room rooftop = new Room("Você está no terraço da festa. Ele é iluminado por luzes decorativas. De lá, você pode ver toda a cidade. Harry talvez tenha deixado algo aqui");
 
         // Conexões internas da fazenda do Zayn
         zaynFarm.setExit("north", barn);
@@ -111,31 +111,23 @@ public class Game
         currentRoom = bedroom;
 
         //álbuns
-        Item upAllNight = new Item("Álbum Up All Night - One Direction", 5);
-        Item takeMeHome = new Item("TMH", 5);
-        Item midnightMemories = new Item("Álbum Midnight Memories - One Direction", 5);
-        Item four = new Item("Álbum Four - One Direction", 5);
-        Item mitam = new Item("Álbum Made In the AM - One Direction", 5);
+        Item upAllNight = new Item("álbum up all night", 5);
+        Item takeMeHome = new Item("álbum take me home", 5);
+        Item midnightMemories = new Item("álbum midnight memories", 5);
+        Item four = new Item("álbum four", 5);
+        Item mitam = new Item("álbum mitam", 5);
 
-        //itens do quarto
+        //item do quarto
         Item poster = new Item("Pôster de One Direction", 5);
-        Item vinyl = new Item("Vinil de Made in the A.M.", 10);
-        Item tickets = new Item("Ingressos para o show em Londres", 2);
-        Item book = new Item("Livro de Memórias da Banda", 3);
-        Item shirt = new Item("Camisa de Turnê 2014", 4);
 
         // Adiciona os itens ao quarto
         bedroom.addItem("poster", poster);
-        bedroom.addItem("vinyl", vinyl);
-        bedroom.addItem("tickets", tickets);
-        bedroom.addItem("book", book);
-        bedroom.addItem("shirt", shirt);
 
         // Criação do item mochila
         Item mochila = new Item("Mochila", 1);  // A mochila tem peso 1
 
         // Adiciona a mochila ao quarto
-        bedroom.addItem("mochila", mochila);
+        kitchen.addItem("mochila", mochila);
 
         Item zaynItem = new Item("Zayn", 1); 
         Item louisItem = new Item("Louis", 1);
@@ -149,48 +141,57 @@ public class Game
         studio.addItem("liam", liamItem);       // Liam está no estúdio
         danceFloor.addItem("harry", harryItem); // Harry está na pista de dança
 
-        bedroom.addItem("TMH", takeMeHome);
-        field.addItem("Álbum Up All Night - One Direction", upAllNight);
-        cave.addItem("Álbum Four - One Direction", four);
-        library.addItem("Álbum Midnight Memories - One Direction", midnightMemories);
-        rooftop.addItem("Álbum Made In the AM - One Direction", mitam);
+        bedroom.addItem("álbum take me home", takeMeHome);
+        field.addItem("álbum up all night", upAllNight);
+        cave.addItem("álbum mitam", mitam);
+        library.addItem("álbum midnight memories", midnightMemories);
+        backyard.addItem("álbum four", four);
+
+        // Adiciona os itens necessários para interagir com o Zayn
+        Item chaveiro = new Item("chaveiro", 1);
+        Item chapeu = new Item("chapéu", 1);
+
+        // Adiciona os itens à fazenda do Zayn
+        zaynBedroom.addItem("chaveiro", chaveiro); // Chaveiro no celeiro
+        barn.addItem("chapéu", chapeu);    // Chapéu na casa
+
+        // Adiciona a pulseira VIP ao lounge
+        Item pulseiraVIP = new Item("pulseira vip", 10);
+        lounge.addItem("pulseira vip", pulseiraVIP);
 
         player.setCurrentRoom(bedroom);
     }
 
-    /**
-     *  Main play routine.  Loops until end of play.
-     */
     public void play() 
     {            
         printWelcome();
-
-        // Enter the main command loop.  Here we repeatedly read commands and
-        // execute them until the game is over.
 
         boolean finished = false;
         while (! finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Adeus. Espero que você reúna a banda na próxima."); 
+        System.out.println("Obrigado por jogar :)"); 
     }
 
-    /**
-     * Print the current location and exits.
-     */
     private void printLocationInfo() {
-        System.out.println(player.getCurrentRoom().getDescription());
-        System.out.println(player.getCurrentRoom().getExitString());
         System.out.println(player.getCurrentRoom().getLongDescription());
     }
 
     private void printWelcome() {
         System.out.println("Bem-vindo ao 'Where We Are'!");
-        System.out.println("Uma aventura inspirada na história de uma das maiores bandas do mundo: One Direction!");
-        System.out.println("Os membros da banda estão espalhados pelo mundo, e cabe a você reuni-los para o grande comeback!");
-        System.out.println("Você possui um MP3 mágico que pode tocar os álbuns da banda, mas antes você precisará encontrá-los e completar missões desafiadoras em cada cidade.");
-        System.out.println("Explore os cenários, colete itens, e prepare-se para trazer a magia de volta ao palco.");
+        System.out.println("Uma aventura inspirada na história da banda One Direction!");
+        System.out.println();
+        System.out.println("Você começa sua jornada no seu quarto, onde algo inesperado aconteceu...");
+        System.out.println("Um MP3 mágico apareceu misteriosamente! Ele contém músicas da banda e uma mensagem enigmática:");
+        System.out.println("\"Os membros da banda desejam se reunir, mas eles precisam que alguém os ajudem a se reunir.\"");
+        System.out.println();
+        System.out.println("O MP3 mágico permitirá que você viaje para diferentes cidades associadas aos membros da banda.");
+        System.out.println("Para ativar cada viagem, você precisará encontrar os álbuns escondidos e talvez completar missões específicas em cada cidade.");
+        System.out.println("Lembre-se, você só poderá avançar para a próxima cidade após reunir o membro correspondente e o álbum!");
+        System.out.println();
+        System.out.println("Explore os cenários e prepare-se para reunir os membros da One Direction para o grande comeback!");
+        System.out.println();
         System.out.println("Digite 'help' se precisar de ajuda com os comandos.");
         System.out.println();
         printLocationInfo(); // Exibe as informações da localização inicial
@@ -234,7 +235,9 @@ public class Game
             dropItem(command);
         }else if (commandWord.equals("items")) {
             printItems();
-        }else if (hasZayn && hasLouis && hasNiall && hasLiam && hasHarry) {
+        }
+
+        if (hasZayn && hasLouis && hasNiall && hasLiam && hasHarry) {
             System.out.println("Parabéns! Você reuniu todos os membros da One Direction! O comeback está garantido! 🎉");
             return true; // Finaliza o jogo
         }
@@ -320,49 +323,64 @@ public class Game
     }
 
     private void playAlbum(String album) {
-        if (album.equals("TMH") && hasTakeMeHome) {
-            System.out.println("Você toca 'Take Me Home' e é teletransportado para a fazenda do Zayn!");
-            player.setCurrentRoom(zaynFarm);
-            printLocationInfo();
+        // Normaliza o nome do álbum para comparação
+        String normalizedAlbum = album.toLowerCase();
 
-        } else if (album.equals("Midnight Memories") && hasMidnightMemories) {
-            if (hasZayn) { // Precisa ter encontrado Zayn
-                System.out.println("Você toca 'Midnight Memories' e vai para Doncaster!");
-                player.setCurrentRoom(louisHome);
-                printLocationInfo();
+        // Verifica se o jogador tem o álbum no inventário
+        if (player.hasItem("álbum " + normalizedAlbum)) {
+            switch (normalizedAlbum) {
+                case "take me home":
+                    System.out.println("Você toca 'Take Me Home' e é teletransportado para a fazenda do Zayn!");
+                    player.setCurrentRoom(zaynFarm);
+                    printLocationInfo();
+                    break;
 
-            } else {
-                System.out.println("Você precisa encontrar Zayn primeiro!");
-            }
-        } else if (album.equals("Four") && hasFour) {
-            if (hasLouis) { // Precisa ter encontrado Louis
-                System.out.println("Você toca 'Four' e vai para o parque de Dublin!");
-                player.setCurrentRoom(dublinPark);
-                printLocationInfo();
+                case "midnight memories":
+                    if (hasLiam) { 
+                        System.out.println("Você toca 'Midnight Memories' e vai para Doncaster!");
+                        player.setCurrentRoom(louisHome);
+                        printLocationInfo();
+                    } else {
+                        System.out.println("Você precisa encontrar Liam primeiro!");
+                    }
+                    break;
 
-            } else {
-                System.out.println("Você precisa encontrar Louis primeiro!");
-            }
-        } else if (album.equals("Up All Night") && hasUpAllNight) {
-            if (hasNiall) { // Precisa ter encontrado Niall
-                System.out.println("Você toca 'Up All Night' e vai para a casa de Liam!");
-                player.setCurrentRoom(liamHome);
-                printLocationInfo();
+                case "four":
+                    if (hasLouis) { // Precisa ter encontrado Louis
+                        System.out.println("Você toca 'Four' e vai para o parque de Dublin!");
+                        player.setCurrentRoom(dublinPark);
+                        printLocationInfo();
+                    } else {
+                        System.out.println("Você precisa encontrar Louis primeiro!");
+                    }
+                    break;
 
-            } else {
-                System.out.println("Você precisa encontrar Niall primeiro!");
-            }
-        } else if (album.equals("Made In The A.M.") && hasMitam) {
-            if (hasLiam) { // Precisa ter encontrado Liam
-                System.out.println("Você toca 'Made In The A.M.' e vai para a festa do Harry!");
-                player.setCurrentRoom(harryParty);
-                printLocationInfo();
+                case "up all night":
+                    if (hasZayn) { 
+                        System.out.println("Você toca 'Up All Night' e vai para a casa de Liam!");
+                        player.setCurrentRoom(liamHome);
+                        printLocationInfo();
+                    } else {
+                        System.out.println("Você precisa encontrar Zayn primeiro!");
+                    }
+                    break;
 
-            } else {
-                System.out.println("Você precisa encontrar Liam primeiro!");
+                case "mitam":
+                    if (hasNiall) { 
+                        System.out.println("Você toca 'Made In The A.M.' e vai para a festa do Harry!");
+                        player.setCurrentRoom(harryParty);
+                        printLocationInfo();
+                    } else {
+                        System.out.println("Você precisa encontrar Niall primeiro!");
+                    }
+                    break;
+
+                default:
+                    System.out.println("Você não pode tocar esse álbum agora. Verifique se você tem o álbum e o membro necessário.");
+                    break;
             }
         } else {
-            System.out.println("Você não pode tocar esse álbum agora. Verifique se você tem o álbum e o membro necessário.");
+            System.out.println("Você não tem o álbum " + album + " no seu inventário.");
         }
     }
 
@@ -381,50 +399,83 @@ public class Game
             return;
         }
 
-        String itemName = command.getSecondWord();
+        String itemName = command.getSecondWord().toLowerCase();
         Item item = player.getCurrentRoom().getItem(itemName);
 
         if (item == null) {
             System.out.println("Não tem " + itemName + " nesse lugar.");
         } else {
-            // Verifica se o item é um álbum ou membro
-            switch (item.getDescription()) {
-                case "TMH":
-                    hasTakeMeHome = true;
-                    break;
-                case "Álbum Midnight Memories - One Direction":
-                    hasMidnightMemories = true;
-                    break;
-                case "Álbum Four - One Direction":
-                    hasFour = true;
-                    break;
-                case "Álbum Up All Night - One Direction":
-                    hasUpAllNight = true;
-                    break;
-                case "Álbum Made In the AM - One Direction":
-                    hasMitam = true;
-                    break;
-                case "Zayn":
-                    hasZayn = true;
-                    System.out.println("Você encontrou Zayn! VAS HAPENNIN!");
-                    break;
-                case "Louis":
-                    hasLouis = true;
-                    System.out.println("Você encontrou Louis! OIOIIIIIIIIIIIIIIIII!");
-                    break;
-                case "Niall":
-                    hasNiall = true;
-                    System.out.println("Você encontrou Niall! LALALALALALALALA VAMOS!!");
-                    break;
-                case "Liam":
-                    hasLiam = true;
-                    System.out.println("Você encontrou Liam! Cuidado com as colheres!");
-                    break;
-                case "Harry":
+
+            if (item.getDescription().equalsIgnoreCase("Mochila")) {
+                player.increaseMaxWeight(20); // Aumenta o peso máximo em 20 unidades
+            }
+
+            if (item.getDescription().equalsIgnoreCase("Harry")) {
+                // Verifica se o jogador tem a pulseira VIP
+                if (player.hasItem("pulseira vip")) {
+                    System.out.println("Você mostra a pulseira VIP para o segurança. Ele permite que você se aproxime do Harry!");
                     hasHarry = true;
                     System.out.println("Você encontrou Harry! A BANDA ESTÁ COMPLETA!");
-                    break;
+                } else {
+                    System.out.println("O segurança bloqueia seu caminho e diz: 'Você não pode entrar aqui sem uma pulseira VIP!'");
+                    System.out.println("Talvez você precise encontrar uma pulseira VIP...");
+                    return; // Impede que o Harry seja pego sem a pulseira VIP
+                }
             }
+
+            // Verifica se o item é o Zayn
+            if (item.getDescription().equalsIgnoreCase("Zayn")) {
+                // Verifica se o jogador tem os itens necessários
+                if (player.hasItem("chaveiro") && player.hasItem("chapéu")) {
+                    System.out.println("Você mostra os itens que coletou na fazenda. Zayn fica feliz e se junta a você!!");
+                    player.addItemToInventory(item); // Adiciona o Zayn ao inventário
+                    player.getCurrentRoom().removeItem(itemName); // Remove o Zayn da sala
+                    hasZayn = true;
+                    System.out.println("Você encontrou Zayn! VAS HAPENNIN!");
+                    player.removeItemFromInventory("chaveiro");
+                    player.removeItemFromInventory("chapéu");
+                } else {
+                    System.out.println("Zayn se recusa a sair até achar o chapéu dele e seu chaveiro. Procure pela fazenda!!");
+                    if (!player.hasItem("chaveiro")) {
+                        System.out.println("- Você ainda não tem o Chaveiro.");
+                    }
+                    if (!player.hasItem("chapéu")) {
+                        System.out.println("- Você ainda não tem o Chapéu.");
+                    }
+                    return; // Impede que o Zayn seja pego sem os itens necessários
+                }
+
+            }else
+            // Verifica se o item é um álbum ou membro
+                switch (item.getDescription()) {
+                    case "Álbum Take Me Home":
+                        hasTakeMeHome = true;
+                        break;
+                    case "Álbum Midnight Memories":
+                        hasMidnightMemories = true;
+                        break;
+                    case "Álbum Four":
+                        hasFour = true;
+                        break;
+                    case "Álbum Up All Night":
+                        hasUpAllNight = true;
+                        break;
+                    case "Álbum Mitam":
+                        hasMitam = true;
+                        break;
+                    case "Louis":
+                        hasLouis = true;
+                        System.out.println("Você encontrou Louis! OIOIIIIIIIIIIIIIIIII!");
+                        break;
+                    case "Niall":
+                        hasNiall = true;
+                        System.out.println("Você encontrou Niall! LALALALALALALALA VAMOS!!");
+                        break;
+                    case "Liam":
+                        hasLiam = true;
+                        System.out.println("Você encontrou Liam! Cuidado com as colheres!");
+                        break;
+                }
 
             player.addItemToInventory(item);
             player.getCurrentRoom().removeItem(itemName);
@@ -449,5 +500,4 @@ public class Game
             System.out.println("Você não tem " + itemName + ".");
         }
     }
-
 }

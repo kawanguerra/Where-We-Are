@@ -14,13 +14,11 @@ public class Player {
     }
 
     public void addItemToInventory(Item item) {
-        // Verificar se o peso do item excede o peso máximo permitido
         if (currentWeight + item.getWeight() > maxWeight) {
             System.out.println("Você não pode carregar isso! Tá muito pesado.");
         } else {
-            inventory.put(item.getDescription(), item);
+            inventory.put(item.getDescription().toLowerCase(), item); // Chave em minúsculas
             currentWeight += item.getWeight();
-            System.out.println("Você pegou " + item.getDescription());
         }
     }
 
@@ -60,6 +58,5 @@ public class Player {
         maxWeight += amount;
         System.out.println("Sua capacidade de carga aumentou! A nova capacidade é " + maxWeight + ".");
     }
-    
-    
+
 }
