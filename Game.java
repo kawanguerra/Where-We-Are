@@ -35,7 +35,7 @@ public class Game
         parser = new Parser();
         previousRooms = new Stack<>();
         player = new Player("Você", new Room("no seu quarto"));
-        createRooms(); // Agora `createRooms()` pode acessar `player` sem erro
+        createRooms(); 
     }
 
     private void createRooms() {
